@@ -128,6 +128,7 @@ class ArvoreJogos:
 class HashGeneros:
     def __init__(self):
         self.genero_para_jogos = {}
+    
     def adicionar_jogo(self, jogo):
         if jogo.generos is not None:
             for genero in jogo.generos:
@@ -141,34 +142,6 @@ class HashGeneros:
             return self.genero_para_jogos[genero]
         else:
             return []
-
-class NoJogoTrie:
-    def __init__(self, letra):
-        self.letra = letra
-        self.filhos = {}
-        self.jogo = None
-    
-class ArvoreTrie:
-    def __init__(self):
-        self.raiz = NoJogoTrie("")
-
-    def inserir(self, jogo):
-        nodo_atual = self.raiz
-        for letra in jogo.titulo:
-            if letra not in nodo_atual.filhos:
-                nodo_atual.filhos[letra] = NoJogoTrie(letra)
-            nodo_atual = nodo_atual.filhos[letra]
-        nodo_atual.jogo = jogo
-
-    def pesquisar(self, titulo):
-        nodo_atual = self.raiz
-        for letra in titulo:
-            if letra not in nodo_atual.filhos:
-                return None
-            nodo_atual = nodo_atual.filhos[letra]
-        return nodo_atual.jogo
-
-
 
 class MotorBuscaJogos:
     def __init__(self):
